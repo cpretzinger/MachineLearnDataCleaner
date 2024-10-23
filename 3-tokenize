@@ -1,0 +1,54 @@
+import json
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# Download NLTK stop words
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Load the JSON file
+with open('organized_data.json', 'r') as f:
+    data = json.load(f)
+
+# Define stop words (you can modify this list based on your domain)
+stop_words = set(stopwords.words('english'))
+
+def clean_text(text):
+    # Check if the text is not None
+    if text is None:
+        return ''  # Return an empty string or handle as needed
+    
+    # Tokenize the text
+    tokens = word_tokenize(text.lower())
+    
+    # Filter out stop words
+    filtered_tokens = [word for word in tokens if word not in stop_words and word.isalnum()]
+    
+    # Join the filtered tokens back into a string
+    return ' '.join(filtered_tokens)
+
+# Iterate through the JSON and clean each relevant section
+def clean_data(data):
+    if isinstance(data, dict):
+        # If it's a dictionary, clean each key-value pair
+        for key, value in data.items():
+            if isinstance(value, dict):
+                clean_data(value)  # Recursive call for nested dictionaries
+            elif isinstance(value, str):
+                data[key] = clean_text(value)  # Clean the text field
+            elif isinstance(value, list):
+                data[key] = [clean_text(item) if isinstance(item, str) else item for item in value]
+    elif isinstance(data, list):
+        # If it's a list, clean each item in the list
+        data = [clean_data(item) if isinstance(item, (dict, list)) else clean_text(item) for item in data]
+    return data
+
+# Apply the cleaning function
+cleaned_data = clean_data(data)
+
+# Save the cleaned and tokenized data back into JSON format
+with open('tokenized_data.json', 'w') as f:
+    json.dump(cleaned_data, f, indent=4)
+
+print("Data cleaned and saved as tokenized_data.json")

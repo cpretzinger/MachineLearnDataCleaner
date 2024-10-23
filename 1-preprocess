@@ -1,0 +1,112 @@
+import re
+import json
+
+def clean_scraped_data(input_file, output_file):
+    # Read the data from the input text file
+    with open(input_file, 'r', encoding='utf-8') as file:
+        data = file.read()
+
+    # Split data into pages using 'Page:' as the delimiter
+    pages = re.split(r'Page:\s+', data)
+    processed_pages = []
+
+    for page in pages:
+        page = page.strip()
+        if not page:
+            continue
+
+        # Extract the URL if present
+        url_match = re.match(r'(https?://[^\s]+)', page)
+        if url_match:
+            url = url_match.group(1)
+            page_content = page[len(url):].strip()
+        else:
+            url = None
+            page_content = page
+
+        # Initialize page dictionary
+        page_dict = {
+            'url': url,
+            'sections': []
+        }
+
+        # Split the page content into lines and create an iterator
+        lines = page_content.split('\n')
+        lines_iter = iter(lines)  # Initialize the iterator here
+
+        current_section = None
+        content_buffer = []
+
+        for line in lines_iter:
+            line = line.strip()
+            if not line:
+                continue
+
+            # Detect section headings
+            if re.match(r'^#+\s*\w+', line) or re.match(r'^\u200b?[\w\s]+$', line):
+                # Save the previous section if it exists
+                if current_section and content_buffer:
+                    current_section['content'] = ' '.join(content_buffer)
+                    page_dict['sections'].append(current_section)
+                    content_buffer = []
+
+                # Start a new section
+                current_section = {
+                    'title': line.strip('\u200b').strip(),
+                    'content': ''
+                }
+
+            elif line.startswith('Code example') or line.startswith('Code'):
+                # Handle code examples
+                code_content = []
+                code_block_started = False
+
+                # Check if the code block starts on the same line
+                if '```' in line:
+                    code_block_started = True
+                    code_content.append(line)
+                else:
+                    code_content.append(line)
+
+                # Continue adding lines to code_content until the code block ends
+                while True:
+                    try:
+                        code_line = next(lines_iter).strip()
+                        code_content.append(code_line)
+                        if '```' in code_line:
+                            break  # End of code block
+                    except StopIteration:
+                        break  # End of file without closing code block
+
+                # Add the code content to the current section
+                if current_section:
+                    current_section.setdefault('code_examples', []).append('\n'.join(code_content))
+
+            elif 'Was this page helpful?YesNo' in line or 'Powered by Mintlify' in line:
+                # Skip unnecessary lines
+                continue
+
+            else:
+                # Add line to content buffer
+                content_buffer.append(line)
+
+        # Add the last section if it exists
+        if current_section and content_buffer:
+            current_section['content'] = ' '.join(content_buffer)
+            page_dict['sections'].append(current_section)
+
+        processed_pages.append(page_dict)
+
+    # Write the processed data to the output JSON file
+    with open(output_file, 'w', encoding='utf-8') as json_file:
+        json.dump(processed_pages, json_file, indent=4)
+
+    print(f"Data has been cleaned and organized into '{output_file}'.")
+
+if __name__ == "__main__":
+    # Define input and output file paths
+    input_filename = 'scraped_data.txt'       # Replace with your input file name
+    output_filename = 'organized_data.json'   # Desired output file name
+
+    # Call the function to clean and organize data
+    clean_scraped_data(input_filename, output_filename)

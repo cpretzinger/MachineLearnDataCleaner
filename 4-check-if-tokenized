@@ -1,0 +1,15 @@
+#This script helps you check HF dataset for model traiinng readiness
+#Change name in df = pd.read_parquet('path/to/your/train-00000-of-00001-96512fb729aae024.parquet')
+#to load your dataset parquet file
+
+import pandas as pd
+
+# Load the Parquet file
+df = pd.read_parquet('train-00000-of-00001-96512fb729aae024.parquet')
+
+# Display the structure and first few rows of the DataFrame
+print("DataFrame Info:")
+print(df.info())  # This shows the structure and data types
+
+print("\nFirst Few Rows of Data:")
+print(df.head())  # This shows the first few rows of data

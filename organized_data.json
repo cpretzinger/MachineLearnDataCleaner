@@ -1,0 +1,924 @@
+[
+    {
+        "sections": [
+            {
+                "title": "CrewAI Mindmap",
+                "content": "CrewAI is a cutting-edge Python framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks. ​Why CrewAI? 🤼‍♀️ Role-Playing Agents: Agents can take on different roles and personas to better understand and interact with complex systems. 🤖 Autonomous Decision Making: Agents can make decisions autonomously based on the given context and available tools. 🤝 Seamless Collaboration: Agents can work together seamlessly, sharing information and resources to achieve common goals. 🧠 Complex Task Tackling: CrewAI is designed to tackle complex tasks, such as multi-step workflows, decision making, and problem solving."
+            },
+            {
+                "title": "Get Started with CrewAI",
+                "content": "Install CrewAI to get started with your first agent."
+            }
+        ]
+    },
+    null,
+    null,
+    {
+        "url": "https://docs.crewai.com/introduction",
+        "sections": [
+            {
+                "title": "Terminalcrewai update",
+                "content": "Introduction - Install CrewAI to get started with your first agent. Installation - CrewAICrewAI Let’s get started! 🚀 Make sure you have Python >=3.10 <=3.13 installed on your system before you proceed. 1Install CrewAIInstall the main CrewAI package with the following command:You can also install the main CrewAI package and the tools package that include a series of helpful tools for your agents:Alternatively, you can also use:2Upgrade CrewAITo upgrade CrewAI and CrewAI Tools to the latest version, run the following command If you’re using an older version of CrewAI, you may receive a warning about using Poetry for dependency management. In this case, you’ll need to run the command below to update your project. This command will migrate your project to use UV and update the necessary files. After running the command above, you should see the following output: You’re all set! You can now proceed to the next step! 🎉 3Verify the installationTo verify that crewai and crewai-tools are installed correctly, run the following commandYou should see the version number of crewai and crewai-tools.If you see the version number, then the installation was successful! 🎉"
+            },
+            {
+                "title": "Create a new CrewAI project",
+                "content": "The next step is to create a new CrewAI project. We recommend using the YAML Template scaffolding to get started as it provides a structured approach to defining agents and tasks. 1Create a new CrewAI project using the YAML Template ConfigurationTo create a new CrewAI project, run the following CLI (Command Line Interface) command:This command creates a new project folder with the following structure:File/DirectoryDescriptionmy_project/Root directory of the project├── .gitignoreSpecifies files and directories to ignore in Git├── pyproject.tomlProject configuration and dependencies├── README.mdProject documentation├── .envEnvironment variables└── src/Source code directory    └── my_project/Main application package        ├── __init__.pyMarks the directory as a Python package        ├── main.pyMain application script        ├── crew.pyCrew-related functionalities        ├── tools/Custom tools directory        │  ├── custom_tool.pyCustom tool implementation        │  └── __init__.pyMarks tools directory as a package        └── config/Configuration files directory            ├── agents.yamlAgent configurations            └── tasks.yamlTask configurationsYou can now start developing your crew by editing the files in the src/my_project folder. The main.py file is the entry point of the project, the crew.py file is where you define your crew, the agents.yaml file is where you define your agents, and the tasks.yaml file is where you define your tasks.2Customize your projectTo customize your project, you can: Modify src/my_project/config/agents.yaml to define your agents. Modify src/my_project/config/tasks.yaml to define your tasks. Modify src/my_project/crew.py to add your own logic, tools, and specific arguments. Modify src/my_project/main.py to add custom inputs for your agents and tasks. Add your environment variables into the .env file."
+            },
+            {
+                "title": "Next steps",
+                "content": "Now that you have installed crewai and crewai-tools, you’re ready to spin up your first crew! 👨‍💻 Build your first agent with CrewAI by following the Core ConceptsAgentsWhat are CrewAI Agents and how to use them.​What is an agent? An agent is an autonomous unit programmed to:"
+            },
+            {
+                "title": "Perform tasksMake decisionsCommunicate with other agents",
+                "content": "Think of an agent as a member of a team, with specific skills and a particular job to do. Agents can have different roles like Researcher, Writer, or Customer Support, each contributing to the overall goal of the crew."
+            },
+            {
+                "title": "Agent attributes",
+                "content": "AttributeParameterDescriptionRoleroleDefines the agent’s function within the crew. It determines the kind of tasks the agent is best suited for.GoalgoalThe individual objective that the agent aims to achieve. It guides the agent’s decision-making process.BackstorybackstoryProvides context to the agent’s role and goal, enriching the interaction and collaboration dynamics.LLM (optional)llmRepresents the language model that will run the agent. It dynamically fetches the model name from the OPENAI_MODEL_NAME environment variable, defaulting to “gpt-4” if not specified.Tools (optional)toolsSet of capabilities or functions that the agent can use to perform tasks. Expected to be instances of custom classes compatible with the agent’s execution environment. Tools are initialized with a default value of an empty list.Function Calling LLM (optional)function_calling_llmSpecifies the language model that will handle the tool calling for this agent, overriding the crew function calling LLM if passed. Default is None.Max Iter (optional)max_iterMax Iter is the maximum number of iterations the agent can perform before being forced to give its best answer. Default is 25.Max RPM (optional)max_rpmMax RPM is the maximum number of requests per minute the agent can perform to avoid rate limits. It’s optional and can be left unspecified, with a default value of None.Max Execution Time (optional)max_execution_timeMax Execution Time is the maximum execution time for an agent to execute a task. It’s optional and can be left unspecified, with a default value of None, meaning no max execution time.Verbose (optional)verboseSetting this to True configures the internal logger to provide detailed execution logs, aiding in debugging and monitoring. Default is False.Allow Delegation (optional)allow_delegationAgents can delegate tasks or questions to one another, ensuring that each task is handled by the most suitable agent. Default is False.Step Callback (optional)step_callbackA function that is called after each step of the agent. This can be used to log the agent’s actions or to perform other operations. It will overwrite the crew step_callback.Cache (optional)cacheIndicates if the agent should use a cache for tool usage. Default is True.System Template (optional)system_templateSpecifies the system format for the agent. Default is None.Prompt Template (optional)prompt_templateSpecifies the prompt format for the agent. Default is None.Response Template (optional)response_templateSpecifies the response format for the agent. Default is None.Allow Code Execution (optional)allow_code_executionEnable code execution for the agent. Default is False.Max Retry Limit (optional)max_retry_limitMaximum number of retries for an agent to execute a task when an error occurs. Default is 2.Use System Prompt (optional)use_system_promptAdds the ability to not use system prompt (to support o1 models). Default is True.Respect Context Window (optional)respect_context_windowSummary strategy to avoid overflowing the context window. Default is True."
+            },
+            {
+                "title": "Creating an agent",
+                "content": "Agent interaction: Agents can interact with each other using CrewAI’s built-in delegation and communication mechanisms. This allows for dynamic task management and problem-solving within the crew. To create an agent, you would typically initialize an instance of the Agent class with the desired properties. Here’s a conceptual example including all attributes:"
+            },
+            {
+                "title": "Code examplefrom crewai import Agent",
+                "content": "agent = Agent( role='Data Analyst', goal='Extract actionable insights', backstory=\"\"\"You're a data analyst at a large company. You're responsible for analyzing data and providing insights to the business. You're currently working on a project to analyze the performance of our marketing campaigns.\"\"\", tools=[my_tool1, my_tool2], # Optional, defaults to an empty list llm=my_llm, # Optional function_calling_llm=my_llm, # Optional max_iter=15, # Optional max_rpm=None, # Optional max_execution_time=None, # Optional verbose=True, # Optional allow_delegation=False, # Optional step_callback=my_intermediate_step_callback, # Optional cache=True, # Optional system_template=my_system_template, # Optional prompt_template=my_prompt_template, # Optional response_template=my_response_template, # Optional config=my_config, # Optional crew=my_crew, # Optional tools_handler=my_tools_handler, # Optional cache_handler=my_cache_handler, # Optional callbacks=[callback1, callback2], # Optional allow_code_execution=True, # Optional max_retry_limit=2, # Optional use_system_prompt=True, # Optional respect_context_window=True, # Optional )"
+            },
+            {
+                "title": "Setting prompt templates",
+                "content": "Prompt templates are used to format the prompt for the agent. You can use to update the system, regular and response templates for the agent. Here’s an example of how to set prompt templates:",
+                "code_examples": [
+                    "Code exampleagent = Agent(\nrole=\"{topic} specialist\",\ngoal=\"Figure {goal} out\",\nbackstory=\"I am the master of {role}\",\nsystem_template=\"\"\"<|start_header_id|>system<|end_header_id|>\n{{ .System }}<|eot_id|>\"\"\",\nprompt_template=\"\"\"<|start_header_id|>user<|end_header_id|>\n{{ .Prompt }}<|eot_id|>\"\"\",\nresponse_template=\"\"\"<|start_header_id|>assistant<|end_header_id|>\n{{ .Response }}<|eot_id|>\"\"\",\n)\n\n​Bring your third-party agents\nExtend your third-party agents like LlamaIndex, Langchain, Autogen or fully custom agents using the the CrewAI’s BaseAgent class.\nBaseAgent includes attributes and methods required to integrate with your crews to run and delegate tasks to other agents within your own crew.\nCrewAI is a universal multi-agent framework that allows for all agents to work together to automate tasks and solve problems.\nCode examplefrom crewai import Agent, Task, Crew\nfrom custom_agent import CustomAgent # You need to build and extend your own agent logic with the CrewAI BaseAgent class then import it here.\n\nfrom langchain.agents import load_tools\n\nlangchain_tools = load_tools([\"google-serper\"], llm=llm)\n\nagent1 = CustomAgent(\nrole=\"agent role\",\ngoal=\"who is {input}?\",\nbackstory=\"agent backstory\",\nverbose=True,\n)\n\ntask1 = Task(\nexpected_output=\"a short biography of {input}\",\ndescription=\"a short biography of {input}\",\nagent=agent1,\n)\n\nagent2 = Agent(\nrole=\"agent role\",\ngoal=\"summarize the short bio for {input} and if needed do more research\",\nbackstory=\"agent backstory\",\nverbose=True,\n)\n\ntask2 = Task(\ndescription=\"a tldr summary of the short biography\",\nexpected_output=\"5 bullet point summary of the biography\",\nagent=agent2,\ncontext=[task1],\n)\n\nmy_crew = Crew(agents=[agent1, agent2], tasks=[task1, task2])\ncrew = my_crew.kickoff(inputs={\"input\": \"Mark Twain\"})\n\n​Conclusion\nAgents are the building blocks of the CrewAI framework. By understanding how to define and interact with agents,\nyou can create sophisticated AI systems that leverage the power of collaborative intelligence.Was this page helpful?YesNoCore ConceptsCrewsUnderstanding and utilizing crews in the crewAI framework with comprehensive attributes and functionalities.​What is a Crew?\nA crew in crewAI represents a collaborative group of agents working together to achieve a set of tasks. Each crew defines the strategy for task execution, agent collaboration, and the overall workflow.\n​Crew Attributes\nAttributeParametersDescriptionTaskstasksA list of tasks assigned to the crew.AgentsagentsA list of agents that are part of the crew.Process (optional)processThe process flow (e.g., sequential, hierarchical) the crew follows. Default is sequential.Verbose (optional)verboseThe verbosity level for logging during execution. Defaults to False.Manager LLM (optional)manager_llmThe language model used by the manager agent in a hierarchical process. Required when using a hierarchical process.Function Calling LLM (optional)function_calling_llmIf passed, the crew will use this LLM to do function calling for tools for all agents in the crew. Each agent can have its own LLM, which overrides the crew’s LLM for function calling.Config (optional)configOptional configuration settings for the crew, in Json or Dict[str, Any] format.Max RPM (optional)max_rpmMaximum requests per minute the crew adheres to during execution. Defaults to None.Language (optional)languageLanguage used for the crew, defaults to English.Language File (optional)language_filePath to the language file to be used for the crew.Memory (optional)memoryUtilized for storing execution memories (short-term, long-term, entity memory). Defaults to False.Cache (optional)cacheSpecifies whether to use a cache for storing the results of tools’ execution. Defaults to True.Embedder (optional)embedderConfiguration for the embedder to be used by the crew. Mostly used by memory for now. Default is {\"provider\": \"openai\"}.Full Output (optional)full_outputWhether the crew should return the full output with all tasks outputs or just the final output. Defaults to False.Step Callback (optional)step_callbackA function that is called after each step of every agent. This can be used to log the agent’s actions or to perform other operations; it won’t override the agent-specific step_callback.Task Callback (optional)task_callbackA function that is called after the completion of each task. Useful for monitoring or additional operations post-task execution.Share Crew (optional)share_crewWhether you want to share the complete crew information and execution with the crewAI team to make the library better, and allow us to train models.Output Log File (optional)output_log_fileWhether you want to have a file with the complete crew output and execution. You can set it using True and it will default to the folder you are currently in and it will be called logs.txt or passing a string with the full path and name of the file.Manager Agent (optional)manager_agentmanager sets a custom agent that will be used as a manager.Manager Callbacks (optional)manager_callbacksmanager_callbacks takes a list of callback handlers to be executed by the manager agent when a hierarchical process is used.Prompt File (optional)prompt_filePath to the prompt JSON file to be used for the crew.Planning (optional)planningAdds planning ability to the Crew. When activated before each Crew iteration, all Crew data is sent to an AgentPlanner that will plan the tasks and this plan will be added to each task description.Planning LLM (optional)planning_llmThe language model used by the AgentPlanner in a planning process.\nCrew Max RPM: The max_rpm attribute sets the maximum number of requests per minute the crew can perform to avoid rate limits and will override individual agents’ max_rpm settings if you set it.\n​Crew Output\nThe output of a crew in the CrewAI framework is encapsulated within the CrewOutput class.\nThis class provides a structured way to access results of the crew’s execution, including various formats such as raw strings, JSON, and Pydantic models.\nThe CrewOutput includes the results from the final task output, token usage, and individual task outputs.\n​Crew Output Attributes\nAttributeParametersTypeDescriptionRawrawstrThe raw output of the crew. This is the default format for the output.PydanticpydanticOptional[BaseModel]A Pydantic model object representing the structured output of the crew.JSON Dictjson_dictOptional[Dict[str, Any]]A dictionary representing the JSON output of the crew.Tasks Outputtasks_outputList[TaskOutput]A list of TaskOutput objects, each representing the output of a task in the crew.Token Usagetoken_usageDict[str, Any]A summary of token usage, providing insights into the language model’s performance during execution.\n​Crew Output Methods and Properties\nMethod/PropertyDescriptionjsonReturns the JSON string representation of the crew output if the output format is JSON.to_dictConverts the JSON and Pydantic outputs to a dictionary.**str**Returns the string representation of the crew output, prioritizing Pydantic, then JSON, then raw.\n​Accessing Crew Outputs\nOnce a crew has been executed, its output can be accessed through the output attribute of the Crew object. The CrewOutput class provides various ways to interact with and present this output.\n​Example\nCode# Example crew execution\ncrew = Crew(\nagents=[research_agent, writer_agent],\ntasks=[research_task, write_article_task],\nverbose=True\n)\n\ncrew_output = crew.kickoff()\n\n# Accessing the crew output\nprint(f\"Raw Output: {crew_output.raw}\")\nif crew_output.json_dict:\nprint(f\"JSON Output: {json.dumps(crew_output.json_dict, indent=2)}\")\nif crew_output.pydantic:\nprint(f\"Pydantic Output: {crew_output.pydantic}\")\nprint(f\"Tasks Output: {crew_output.tasks_output}\")\nprint(f\"Token Usage: {crew_output.token_usage}\")\n\n​Memory Utilization\nCrews can utilize memory (short-term, long-term, and entity memory) to enhance their execution and learning over time. This feature allows crews to store and recall execution memories, aiding in decision-making and task execution strategies.\n​Cache Utilization\nCaches can be employed to store the results of tools’ execution, making the process more efficient by reducing the need to re-execute identical tasks.\n​Crew Usage Metrics\nAfter the crew execution, you can access the usage_metrics attribute to view the language model (LLM) usage metrics for all tasks executed by the crew. This provides insights into operational efficiency and areas for improvement.\nCode# Access the crew's usage metrics\ncrew = Crew(agents=[agent1, agent2], tasks=[task1, task2])\ncrew.kickoff()\nprint(crew.usage_metrics)\n\n​Crew Execution Process\n\nSequential Process: Tasks are executed one after another, allowing for a linear flow of work.\nHierarchical Process: A manager agent coordinates the crew, delegating tasks and validating outcomes before proceeding. Note: A manager_llm or manager_agent is required for this process and it’s essential for validating the process flow.\n\n​Kicking Off a Crew\nOnce your crew is assembled, initiate the workflow with the kickoff() method. This starts the execution process according to the defined process flow.\nCode# Start the crew's task execution\nresult = my_crew.kickoff()\nprint(result)\n\n​Different Ways to Kick Off a Crew\nOnce your crew is assembled, initiate the workflow with the appropriate kickoff method. CrewAI provides several methods for better control over the kickoff process: kickoff(), kickoff_for_each(), kickoff_async(), and kickoff_for_each_async().\n\nkickoff(): Starts the execution process according to the defined process flow.\nkickoff_for_each(): Executes tasks for each agent individually.\nkickoff_async(): Initiates the workflow asynchronously.\nkickoff_for_each_async(): Executes tasks for each agent individually in an asynchronous manner.\n\nCode# Start the crew's task execution\nresult = my_crew.kickoff()\nprint(result)\n\n# Example of using kickoff_for_each\ninputs_array = [{'topic': 'AI in healthcare'}, {'topic': 'AI in finance'}]\nresults = my_crew.kickoff_for_each(inputs=inputs_array)\nfor result in results:\nprint(result)\n\n# Example of using kickoff_async\ninputs = {'topic': 'AI in healthcare'}\nasync_result = my_crew.kickoff_async(inputs=inputs)\nprint(async_result)\n\n# Example of using kickoff_for_each_async\ninputs_array = [{'topic': 'AI in healthcare'}, {'topic': 'AI in finance'}]\nasync_results = my_crew.kickoff_for_each_async(inputs=inputs_array)\nfor async_result in async_results:\nprint(async_result)\n\nThese methods provide flexibility in how you manage and execute tasks within your crew, allowing for both synchronous and asynchronous workflows tailored to your needs.\n​Replaying from a Specific Task\nYou can now replay from a specific task using our CLI command replay.\nThe replay feature in CrewAI allows you to replay from a specific task using the command-line interface (CLI). By running the command crewai replay -t <task_id>, you can specify the task_id for the replay process.\nKickoffs will now save the latest kickoffs returned task outputs locally for you to be able to replay from.\n​Replaying from a Specific Task Using the CLI\nTo use the replay feature, follow these steps:\n\nOpen your terminal or command prompt.\nNavigate to the directory where your CrewAI project is located.\nRun the following command:\n\nTo view the latest kickoff task IDs, use:\ncrewai log-tasks-outputs\n\nThen, to replay from a specific task, use:\ncrewai replay -t <task_id>\n\nThese commands let you replay from your latest kickoff tasks, still retaining context from previously executed tasks.Was this page helpful?YesNoTasksFlowswebsitexgithublinkedinyoutubePowered by MintlifyOn this pageWhat is a Crew?Crew AttributesCrew OutputCrew Output AttributesCrew Output Methods and PropertiesAccessing Crew OutputsExampleMemory UtilizationCache UtilizationCrew Usage MetricsCrew Execution ProcessKicking Off a CrewDifferent Ways to Kick Off a CrewReplaying from a Specific TaskReplaying from a Specific Task Using the CLI"
+                ]
+            }
+        ]
+    },
+    null,
+    {
+        "url": "https://docs.crewai.com/concepts/llms",
+        "sections": [
+            {
+                "title": "Process Implementations",
+                "content": "LLMs - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationCore ConceptsLLMsGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationCore ConceptsProcessesDetailed guide on workflow management through processes in CrewAI, with updated implementation details.​Understanding Processes Processes orchestrate the execution of tasks by agents, akin to project management in human teams. These processes ensure tasks are distributed and executed efficiently, in alignment with a predefined strategy. Sequential: Executes tasks sequentially, ensuring tasks are completed in an orderly progression. Hierarchical: Organizes tasks in a managerial hierarchy, where tasks are delegated and executed based on a structured chain of command. A manager language model (manager_llm) or a custom manager agent (manager_agent) must be specified in the crew to enable the hierarchical process, facilitating the creation and management of tasks by the manager. Consensual Process (Planned): Aiming for collaborative decision-making among agents on task execution, this process type introduces a democratic approach to task management within CrewAI. It is planned for future development and is not currently implemented in the codebase."
+            },
+            {
+                "title": "The Role of Processes in Teamwork",
+                "content": "Processes enable individual agents to operate as a cohesive unit, streamlining their efforts to achieve common objectives with efficiency and coherence."
+            },
+            {
+                "title": "Assigning Processes to a Crew",
+                "content": "To assign a process to a crew, specify the process type upon crew creation to set the execution strategy. For a hierarchical process, ensure to define manager_llm or manager_agent for the manager agent."
+            },
+            {
+                "title": "from crewai import Crew",
+                "content": "from crewai.process import Process"
+            },
+            {
+                "title": "# Example: Creating a crew with a sequential process",
+                "content": "crew = Crew( agents=my_agents, tasks=my_tasks, process=Process.sequential )"
+            },
+            {
+                "title": "# Ensure to provide a manager_llm or manager_agent",
+                "content": "crew = Crew( agents=my_agents, tasks=my_tasks, process=Process.hierarchical, manager_llm=ChatOpenAI(model=\"gpt-4\")"
+            },
+            {
+                "title": "# manager_agent=my_manager_agent",
+                "content": ") Note: Ensure my_agents and my_tasks are defined prior to creating a Crew object, and for the hierarchical process, either manager_llm or manager_agent is also required."
+            },
+            {
+                "title": "Sequential Process",
+                "content": "This method mirrors dynamic team workflows, progressing through tasks in a thoughtful and systematic manner. Task execution follows the predefined order in the task list, with the output of one task serving as context for the next. To customize task context, utilize the context parameter in the Task class to specify outputs that should be used as context for subsequent tasks."
+            },
+            {
+                "title": "Hierarchical Process",
+                "content": "Emulates a corporate hierarchy, CrewAI allows specifying a custom manager agent or automatically creates one, requiring the specification of a manager language model (manager_llm). This agent oversees task execution, including planning, delegation, and validation. Tasks are not pre-assigned; the manager allocates tasks to agents based on their capabilities, reviews outputs, and assesses task completion. ​Process Class: Detailed Overview The Process class is implemented as an enumeration (Enum), ensuring type safety and restricting process values to the defined types (sequential, hierarchical). The consensual process is planned for future inclusion, emphasizing our commitment to continuous development and innovation."
+            },
+            {
+                "title": "Conclusion",
+                "content": "The structured collaboration facilitated by processes within CrewAI is crucial for enabling systematic teamwork among agents."
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/concepts/collaboration",
+        "sections": [
+            {
+                "title": "Training Your Crew Using the CLI",
+                "content": "Collaboration - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationCore ConceptsCollaborationGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationCore ConceptsTrainingLearn how to train your CrewAI agents by giving them feedback early on and get consistent results.​Introduction The training feature in CrewAI allows you to train your AI agents using the command-line interface (CLI). By running the command crewai train -n <n_iterations>, you can specify the number of iterations for the training process. During training, CrewAI utilizes techniques to optimize the performance of your agents along with human feedback. This helps the agents improve their understanding, decision-making, and problem-solving abilities. To use the training feature, follow these steps: Open your terminal or command prompt. Navigate to the directory where your CrewAI project is located. Run the following command: crewai train -n <n_iterations> <filename> (optional) Replace <n_iterations> with the desired number of training iterations and <filename> with the appropriate filename ending with .pkl."
+            },
+            {
+                "title": "Training Your Crew Programmatically",
+                "content": "To train your crew programmatically, use the following steps: Define the number of iterations for training. Specify the input parameters for the training process. Execute the training command within a try-except block to handle potential errors.",
+                "code_examples": [
+                    "Coden_iterations = 2\ninputs = {\"topic\": \"CrewAI Training\"}\nfilename = \"your_model.pkl\"\n\ntry:\nYourCrewName_Crew().crew().train(\nn_iterations=n_iterations,\ninputs=inputs,\nfilename=filename\n)\n\nexcept Exception as e:\nraise Exception(f\"An error occurred while training the crew: {e}\")\n\n​Key Points to Note\n\nPositive Integer Requirement: Ensure that the number of iterations (n_iterations) is a positive integer. The code will raise a ValueError if this condition is not met.\nFilename Requirement: Ensure that the filename ends with .pkl. The code will raise a ValueError if this condition is not met.\nError Handling: The code handles subprocess errors and unexpected exceptions, providing error messages to the user.\n\nIt is important to note that the training process may take some time, depending on the complexity of your agents and will also require your feedback on each iteration.\nOnce the training is complete, your agents will be equipped with enhanced capabilities and knowledge, ready to tackle complex tasks and provide more consistent and valuable insights.\nRemember to regularly update and retrain your agents to ensure they stay up-to-date with the latest information and advancements in the field.\nHappy training with CrewAI! 🚀Was this page helpful?YesNoCollaborationMemorywebsitexgithublinkedinyoutubePowered by MintlifyOn this pageIntroductionTraining Your Crew Using the CLITraining Your Crew ProgrammaticallyKey Points to Note"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/concepts/memory",
+        "sections": [
+            {
+                "title": "Using the Planning Feature",
+                "content": "Memory - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationCore ConceptsMemoryGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationCore ConceptsPlanningLearn how to add planning to your CrewAI Crew and improve their performance.​Introduction The planning feature in CrewAI allows you to add planning capability to your crew. When enabled, before each Crew iteration, all Crew information is sent to an AgentPlanner that will plan the tasks step by step, and this plan will be added to each task description. Getting started with the planning feature is very easy, the only step required is to add planning=True to your Crew: From this point on, your crew will have planning enabled, and the tasks will be planned before each iteration."
+            },
+            {
+                "title": "Planning LLM",
+                "content": "Now you can define the LLM that will be used to plan the tasks. You can use any ChatOpenAI LLM model available. When running the base case example, you will see something like the output below, which represents the output of the AgentPlanner responsible for creating the step-by-step logic to add to the Agents’ tasks."
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/concepts/testing",
+        "sections": [
+            {
+                "title": "Installation",
+                "content": "Testing - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationCore ConceptsTestingGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationCore ConceptsCLILearn how to use the CrewAI CLI to interact with CrewAI.​CrewAI CLI Documentation The CrewAI CLI provides a set of commands to interact with CrewAI, allowing you to create, train, run, and manage crews and pipelines. To use the CrewAI CLI, make sure you have CrewAI installed:"
+            },
+            {
+                "title": "Basic Usage",
+                "content": "The basic structure of a CrewAI CLI command is: crewai [COMMAND] [OPTIONS] [ARGUMENTS]"
+            },
+            {
+                "title": "Available Commands",
+                "content": "​1. Create Create a new crew or pipeline. crewai create [OPTIONS] TYPE NAME TYPE: Choose between “crew” or “pipeline” NAME: Name of the crew or pipeline --router: (Optional) Create a pipeline with router functionality Example:"
+            },
+            {
+                "title": "crewai create crew my_new_crew",
+                "content": "crewai create pipeline my_new_pipeline --router ​2. Version Show the installed version of CrewAI. crewai version [OPTIONS] --tools: (Optional) Show the installed version of CrewAI tools Example:"
+            },
+            {
+                "title": "crewai version",
+                "content": "crewai version --tools ​3. Train Train the crew for a specified number of iterations. crewai train [OPTIONS] -n, --n_iterations INTEGER: Number of iterations to train the crew (default: 5) -f, --filename TEXT: Path to a custom file for training (default: “trained_agents_data.pkl”) Example: crewai train -n 10 -f my_training_data.pkl ​4. Replay Replay the crew execution from a specific task. crewai replay [OPTIONS] -t, --task_id TEXT: Replay the crew from this task ID, including all subsequent tasks Example: crewai replay -t task_123456 ​5. Log-tasks-outputs Retrieve your latest crew.kickoff() task outputs. crewai log-tasks-outputs ​6. Reset-memories Reset the crew memories (long, short, entity, latest_crew_kickoff_outputs). crewai reset-memories [OPTIONS] -l, --long: Reset LONG TERM memory -s, --short: Reset SHORT TERM memory -e, --entities: Reset ENTITIES memory -k, --kickoff-outputs: Reset LATEST KICKOFF TASK OUTPUTS -a, --all: Reset ALL memories Example: crewai reset-memories --long --short crewai reset-memories --all ​7. Test Test the crew and evaluate the results. crewai test [OPTIONS] -n, --n_iterations INTEGER: Number of iterations to test the crew (default: 3) -m, --model TEXT: LLM Model to run the tests on the Crew (default: “gpt-4o-mini”) Example: crewai test -n 5 -m gpt-3.5-turbo ​8. Run Run the crew."
+            },
+            {
+                "title": "crewai run",
+                "content": "Make sure to run these commands from the directory where your CrewAI project is set up."
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/concepts/tools",
+        "sections": [
+            {
+                "title": "Codeimport os",
+                "content": "Learn how to integrate LangChain tools with CrewAI agents to enhance search-based queries and more.​Using LangChain Tools CrewAI seamlessly integrates with LangChain’s comprehensive list of tools, all of which can be used with CrewAI."
+            },
+            {
+                "title": "from crewai import Agent",
+                "content": "from langchain.agents import Tool from langchain.utilities import GoogleSerperAPIWrapper"
+            },
+            {
+                "title": "# Setup API keys",
+                "content": "os.environ[\"SERPER_API_KEY\"] = \"Your Key\" search = GoogleSerperAPIWrapper()"
+            },
+            {
+                "title": "# Create and assign the search tool to an agent",
+                "content": "serper_tool = Tool( name=\"Intermediate Answer\", func=search.run, description=\"Useful for search-based queries\", ) agent = Agent( role='Research Analyst', goal='Provide up-to-date market analysis', backstory='An expert analyst with a keen eye for market trends.', tools=[serper_tool] )"
+            },
+            {
+                "title": "Conclusion",
+                "content": "Tools are pivotal in extending the capabilities of CrewAI agents, enabling them to undertake a broad spectrum of tasks and collaborate effectively. When building solutions with CrewAI, leverage both custom and existing tools to empower your agents and enhance the AI ecosystem. Consider utilizing error handling, caching mechanisms,"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/concepts/llamaindex-tools",
+        "sections": [
+            {
+                "title": "Prerequisites",
+                "content": "Using LlamaIndex Tools - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationCore ConceptsUsing LlamaIndex ToolsGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesCreate Custom ToolsComprehensive guide on crafting, using, and managing custom tools within the CrewAI framework, including new functionalities and error handling.​Creating and Utilizing Tools in CrewAI This guide provides detailed instructions on creating custom tools for the CrewAI framework and how to efficiently manage and utilize these tools, incorporating the latest functionalities such as tool delegation, error handling, and dynamic tool calling. It also highlights the importance of collaboration tools, enabling agents to perform a wide range of actions. Before creating your own tools, ensure you have the crewAI extra tools package installed: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Subclassing BaseTool",
+                "content": "To create a personalized tool, inherit from BaseTool and define the necessary attributes and the _run method."
+            },
+            {
+                "title": "Codefrom crewai_tools import BaseTool",
+                "content": "class MyCustomTool(BaseTool): name: str = \"Name of my tool\" description: str = \"What this tool does. It's vital for effective utilization.\" def _run(self, argument: str) -> str:"
+            },
+            {
+                "title": "# Your tool's logic here",
+                "content": "return \"Tool's result\""
+            },
+            {
+                "title": "Using the tool Decorator",
+                "content": "Alternatively, you can use the tool decorator @tool. This approach allows you to define the tool’s attributes and functionality directly within a function, offering a concise and efficient way to create specialized tools tailored to your needs."
+            },
+            {
+                "title": "Codefrom crewai_tools import tool",
+                "content": "@tool(\"Tool Name\") def my_simple_tool(question: str) -> str: \"\"\"Tool description for clarity.\"\"\""
+            },
+            {
+                "title": "# Tool logic here",
+                "content": "return \"Tool output\""
+            },
+            {
+                "title": "Defining a Cache Function for the Tool",
+                "content": "To optimize tool performance with caching, define custom caching strategies using the cache_function attribute.",
+                "code_examples": [
+                    "Code@tool(\"Tool with Caching\")\ndef cached_tool(argument: str) -> str:\n\"\"\"Tool functionality description.\"\"\"\nreturn \"Cacheable result\"\n\ndef my_cache_strategy(arguments: dict, result: str) -> bool:\n# Define custom caching logic\nreturn True if some_condition else False\n\ncached_tool.cache_function = my_cache_strategy\n\nBy adhering to these guidelines and incorporating new functionalities and collaboration tools into your tool creation and management processes,\nyou can leverage the full capabilities of the CrewAI framework, enhancing both the development experience and the efficiency of your AI agents.Was this page helpful?YesNoUsing LlamaIndex ToolsSequential ProcesseswebsitexgithublinkedinyoutubePowered by MintlifyOn this pageCreating and Utilizing Tools in CrewAIPrerequisitesSubclassing BaseToolUsing the tool DecoratorDefining a Cache Function for the Tool"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/sequential-process",
+        "sections": [
+            {
+                "title": "Hierarchical Process Overview",
+                "content": "Sequential Processes - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesSequential ProcessesGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesHierarchical ProcessA comprehensive guide to understanding and applying the hierarchical process within your CrewAI projects, updated to reflect the latest coding practices and functionalities.​Introduction The hierarchical process in CrewAI introduces a structured approach to task management, simulating traditional organizational hierarchies for efficient task delegation and execution. This systematic workflow enhances project outcomes by ensuring tasks are handled with optimal efficiency and accuracy. The hierarchical process is designed to leverage advanced models like GPT-4, optimizing token usage while handling complex tasks with greater efficiency. By default, tasks in CrewAI are managed through a sequential process. However, adopting a hierarchical approach allows for a clear hierarchy in task management, where a ‘manager’ agent coordinates the workflow, delegates tasks, and validates outcomes for streamlined and effective execution. This manager agent can now be either automatically created by CrewAI or explicitly set by the user."
+            },
+            {
+                "title": "Key Features",
+                "content": "Task Delegation: A manager agent allocates tasks among crew members based on their roles and capabilities. Result Validation: The manager evaluates outcomes to ensure they meet the required standards. Efficient Workflow: Emulates corporate structures, providing an organized approach to task management. System Prompt Handling: Optionally specify whether the system should use predefined prompts. Stop Words Control: Optionally specify whether stop words should be used, supporting various models including the o1 models. Context Window Respect: Prioritize important context by enabling respect of the context window, which is now the default behavior. Delegation Control: Delegation is now disabled by default to give users explicit control. Max Requests Per Minute: Configurable option to set the maximum number of requests per minute. Max Iterations: Limit the maximum number of iterations for obtaining a final answer."
+            },
+            {
+                "title": "Implementing the Hierarchical Process",
+                "content": "To utilize the hierarchical process, it’s essential to explicitly set the process attribute to Process.hierarchical, as the default behavior is Process.sequential. Define a crew with a designated manager and establish a clear chain of command. Assign tools at the agent level to facilitate task delegation and execution by the designated agents under the manager’s guidance. Tools can also be specified at the task level for precise control over tool availability during task execution. Configuring the manager_llm parameter is crucial for the hierarchical process. The system requires a manager LLM to be set up for proper function, ensuring tailored decision-making."
+            },
+            {
+                "title": "Codefrom langchain_openai import ChatOpenAI",
+                "content": "from crewai import Crew, Process, Agent"
+            },
+            {
+                "title": "# Agents are defined with attributes for backstory, cache, and verbose mode",
+                "content": "researcher = Agent( role='Researcher', goal='Conduct in-depth analysis', backstory='Experienced data analyst with a knack for uncovering hidden trends.', cache=True, verbose=False,"
+            },
+            {
+                "title": "# tools=[]  # This can be optionally specified; defaults to an empty list",
+                "content": "use_system_prompt=True, # Enable or disable system prompts for this agent max_rpm=30, # Limit on the number of requests per minute max_iter=5 # Maximum number of iterations for a final answer ) writer = Agent( role='Writer', goal='Create engaging content', backstory='Creative writer passionate about storytelling in technical domains.', cache=True, verbose=False,"
+            },
+            {
+                "title": "# tools=[]  # Optionally specify tools; defaults to an empty list",
+                "content": "use_system_prompt=True, # Enable or disable system prompts for this agent max_rpm=30, # Limit on the number of requests per minute max_iter=5 # Maximum number of iterations for a final answer )"
+            },
+            {
+                "title": "# Establishing the crew with a hierarchical process and additional configurations",
+                "content": "project_crew = Crew( tasks=[...], # Tasks to be delegated and executed under the manager's supervision agents=[researcher, writer], manager_llm=ChatOpenAI(temperature=0, model=\"gpt-4\"), # Mandatory if manager_agent is not set process=Process.hierarchical, # Specifies the hierarchical management approach respect_context_window=True, # Enable respect of the context window for tasks memory=True, # Enable memory usage for enhanced task execution manager_agent=None, # Optional: explicitly set a specific agent as manager instead of the manager_llm planning=True, # Enable planning feature for pre-execution strategy )"
+            },
+            {
+                "title": "Workflow in Action",
+                "content": "Task Assignment: The manager assigns tasks strategically, considering each agent’s capabilities and available tools. Execution and Review: Agents complete their tasks with the option for asynchronous execution and callback functions for streamlined workflows. Sequential Task Progression: Despite being a hierarchical process, tasks follow a logical order for smooth progression, facilitated by the manager’s oversight."
+            },
+            {
+                "title": "Conclusion",
+                "content": "Adopting the hierarchical process in CrewAI, with the correct configurations and understanding of the system’s capabilities, facilitates an organized and efficient approach to project management."
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/custom-manager-agent",
+        "sections": [
+            {
+                "title": "Supported Providers",
+                "content": "Create Your Own Manager Agent - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesCreate Your Own Manager AgentGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesConnect to any LLMComprehensive guide on integrating CrewAI with various Large Language Models (LLMs) using LiteLLM, including supported providers and configuration options.​Connect CrewAI to LLMs CrewAI uses LiteLLM to connect to a wide variety of Language Models (LLMs). This integration provides extensive versatility, allowing you to use models from numerous providers with a simple, unified interface. By default, CrewAI uses the gpt-4o-mini model. This is determined by the OPENAI_MODEL_NAME environment variable, which defaults to “gpt-4o-mini” if not set. You can easily configure your agents to use a different model or provider as described in this guide. LiteLLM supports a wide range of providers, including but not limited to:"
+            },
+            {
+                "title": "Anthropic",
+                "content": "Google (Vertex AI, Gemini)"
+            },
+            {
+                "title": "Azure OpenAI",
+                "content": "AWS (Bedrock, SageMaker)"
+            },
+            {
+                "title": "Groq",
+                "content": "And many more! For a complete and up-to-date list of supported providers, please refer to the LiteLLM Providers documentation."
+            },
+            {
+                "title": "Changing the LLM",
+                "content": "To use a different LLM with your CrewAI agents, you have several options: Using a String IdentifierUsing the LLM ClassPass the model name as a string when initializing the agent:"
+            },
+            {
+                "title": "Configuration Options",
+                "content": "When configuring an LLM for your agent, you have access to a wide range of parameters: ParameterTypeDescriptionmodelstrThe name of the model to use (e.g., “gpt-4”, “claude-2”)temperaturefloatControls randomness in output (0.0 to 1.0)max_tokensintMaximum number of tokens to generatetop_pfloatControls diversity of output (0.0 to 1.0)frequency_penaltyfloatPenalizes new tokens based on their frequency in the text so farpresence_penaltyfloatPenalizes new tokens based on their presence in the text so farstopstr, List[str]Sequence(s) to stop generationbase_urlstrThe base URL for the API endpointapi_keystrYour API key for authentication For a complete list of parameters and their descriptions, refer to the LLM class documentation. ​Connecting to OpenAI-Compatible LLMs You can connect to OpenAI-compatible LLMs using either environment variables or by setting specific attributes on the LLM class:"
+            },
+            {
+                "title": "Using Local Models with Ollama",
+                "content": "For local models like those provided by Ollama: 1Download and install OllamaClick here to download and install Ollama2Pull the desired modelFor example, run ollama pull llama3.2 to download the model.3Configure your agent"
+            },
+            {
+                "title": "Changing the Base API URL",
+                "content": "You can change the base API URL for any LLM provider by setting the base_url parameter:",
+                "code_examples": [
+                    "Code  llm = LLM(\nmodel=\"custom-model-name\",\nbase_url=\"https://api.your-provider.com/v1\",\napi_key=\"your-api-key\"\n)\nagent = Agent(llm=llm, ...)\n\nThis is particularly useful when working with OpenAI-compatible APIs or when you need to specify a different endpoint for your chosen provider.\n​Conclusion\nBy leveraging LiteLLM, CrewAI offers seamless integration with a vast array of LLMs. This flexibility allows you to choose the most suitable model for your specific needs, whether you prioritize performance, cost-efficiency, or local deployment. Remember to consult the LiteLLM documentation for the most up-to-date information on supported models and configuration options.Was this page helpful?YesNoCreate Your Own Manager AgentCustomize AgentswebsitexgithublinkedinyoutubePowered by MintlifyOn this pageConnect CrewAI to LLMsSupported ProvidersChanging the LLMConfiguration OptionsConnecting to OpenAI-Compatible LLMsUsing Local Models with OllamaChanging the Base API URLConclusion"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/customizing-agents",
+        "sections": [
+            {
+                "title": "Enabling Code Execution",
+                "content": "Customize Agents - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesCustomize AgentsGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesCoding AgentsLearn how to enable your CrewAI Agents to write and execute code, and explore advanced features for enhanced functionality.​Introduction CrewAI Agents now have the powerful ability to write and execute code, significantly enhancing their problem-solving capabilities. This feature is particularly useful for tasks that require computational or programmatic solutions. To enable code execution for an agent, set the allow_code_execution parameter to True when creating the agent. Here’s an example:"
+            },
+            {
+                "title": "Codefrom crewai import Agent",
+                "content": "coding_agent = Agent( role=\"Senior Python Developer\", goal=\"Craft well-designed and thought-out code\", backstory=\"You are a senior Python developer with extensive experience in software architecture and best practices.\", allow_code_execution=True ) Note that allow_code_execution parameter defaults to False."
+            },
+            {
+                "title": "Important Considerations",
+                "content": "Model Selection: It is strongly recommended to use more capable models like Claude 3.5 Sonnet and GPT-4 when enabling code execution. These models have a better understanding of programming concepts and are more likely to generate correct and efficient code. Error Handling: The code execution feature includes error handling. If executed code raises an exception, the agent will receive the error message and can attempt to correct the code or provide alternative solutions. The max_retry_limit parameter, which defaults to 2, controls the maximum number of retries for a task. Dependencies: To use the code execution feature, you need to install the crewai_tools package. If not installed, the agent will log an info message: “Coding tools not available. Install crewai_tools.”"
+            },
+            {
+                "title": "Code Execution Process",
+                "content": "When an agent with code execution enabled encounters a task requiring programming: 1Task AnalysisThe agent analyzes the task and determines that code execution is necessary.2Code FormulationIt formulates the Python code needed to solve the problem.3Code ExecutionThe code is sent to the internal code execution tool (CodeInterpreterTool).4Result InterpretationThe agent interprets the result and incorporates it into its response or uses it for further problem-solving."
+            },
+            {
+                "title": "Example Usage",
+                "content": "Here’s a detailed example of creating an agent with code execution capabilities and using it in a task:",
+                "code_examples": [
+                    "Codefrom crewai import Agent, Task, Crew\n\n# Create an agent with code execution enabled\ncoding_agent = Agent(\nrole=\"Python Data Analyst\",\ngoal=\"Analyze data and provide insights using Python\",\nbackstory=\"You are an experienced data analyst with strong Python skills.\",\nallow_code_execution=True\n)\n\n# Create a task that requires code execution\ndata_analysis_task = Task(\ndescription=\"Analyze the given dataset and calculate the average age of participants.\",\nagent=coding_agent\n)\n\n# Create a crew and add the task\nanalysis_crew = Crew(\nagents=[coding_agent],\ntasks=[data_analysis_task]\n)\n\n# Execute the crew\nresult = analysis_crew.kickoff()\n\nprint(result)\n\nIn this example, the coding_agent can write and execute Python code to perform data analysis tasks.Was this page helpful?YesNoCustomize AgentsForce Tool Output as ResultwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageIntroductionEnabling Code ExecutionImportant ConsiderationsCode Execution ProcessExample Usage"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/force-tool-output-as-result",
+        "sections": [
+            {
+                "title": "Using human input with CrewAI",
+                "content": "Force Tool Output as Result - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesForce Tool Output as ResultGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesHuman Input on ExecutionIntegrating CrewAI with human input during execution in complex decision-making processes and leveraging the full capabilities of the agent’s attributes and tools.​Human input in agent execution Human input is critical in several agent execution scenarios, allowing agents to request additional information or clarification when necessary. This feature is especially useful in complex decision-making processes or when agents require more details to complete a task effectively. To integrate human input into agent execution, set the human_input flag in the task definition. When enabled, the agent prompts the user for input before delivering its final answer. This input can provide extra context, clarify ambiguities, or validate the agent’s output. ​Example:"
+            },
+            {
+                "title": "Codeimport os",
+                "content": "from crewai import Agent, Task, Crew"
+            },
+            {
+                "title": "from crewai_tools import SerperDevTool",
+                "content": "os.environ[\"SERPER_API_KEY\"] = \"Your Key\" # serper.dev API key os.environ[\"OPENAI_API_KEY\"] = \"Your Key\""
+            },
+            {
+                "title": "# Loading Tools",
+                "content": "search_tool = SerperDevTool()"
+            },
+            {
+                "title": "# Define your agents with roles, goals, tools, and additional attributes",
+                "content": "researcher = Agent( role='Senior Research Analyst', goal='Uncover cutting-edge developments in AI and data science', backstory=( \"You are a Senior Research Analyst at a leading tech think tank. \" \"Your expertise lies in identifying emerging trends and technologies in AI and data science. \" \"You have a knack for dissecting complex data and presenting actionable insights.\" ), verbose=True, allow_delegation=False, tools=[search_tool] ) writer = Agent( role='Tech Content Strategist', goal='Craft compelling content on tech advancements', backstory=( \"You are a renowned Tech Content Strategist, known for your insightful and engaging articles on technology and innovation. \" \"With a deep understanding of the tech industry, you transform complex concepts into compelling narratives.\" ), verbose=True, allow_delegation=True, tools=[search_tool], cache=False, # Disable cache for this agent )"
+            },
+            {
+                "title": "# Create tasks for your agents",
+                "content": "task1 = Task( description=( \"Conduct a comprehensive analysis of the latest advancements in AI in 2024. \" \"Identify key trends, breakthrough technologies, and potential industry impacts. \" \"Compile your findings in a detailed report. \" \"Make sure to check with a human if the draft is good before finalizing your answer.\" ), expected_output='A comprehensive full report on the latest AI advancements in 2024, leave nothing out', agent=researcher, human_input=True ) task2 = Task( description=( \"Using the insights from the researcher's report, develop an engaging blog post that highlights the most significant AI advancements. \" \"Your post should be informative yet accessible, catering to a tech-savvy audience. \" \"Aim for a narrative that captures the essence of these breakthroughs and their implications for the future.\" ), expected_output='A compelling 3 paragraphs blog post formatted as markdown about the latest AI advancements in 2024', agent=writer, human_input=True )"
+            },
+            {
+                "title": "# Instantiate your crew with a sequential process",
+                "content": "crew = Crew( agents=[researcher, writer], tasks=[task1, task2], verbose=True, memory=True, planning=True # Enable planning feature for the crew )"
+            },
+            {
+                "title": "# Get your crew to work!",
+                "content": "result = crew.kickoff() print(\"######################\") print(result)"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/kickoff-async",
+        "sections": [
+            {
+                "title": "Kicking Off a Crew for Each Item",
+                "content": "Kickoff Crew Asynchronously - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesKickoff Crew AsynchronouslyGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesKickoff Crew for EachKickoff Crew for Each Item in a List​Introduction CrewAI provides the ability to kickoff a crew for each item in a list, allowing you to execute the crew for each item in the list. This feature is particularly useful when you need to perform the same set of tasks for multiple items. To kickoff a crew for each item in a list, use the kickoff_for_each() method. This method executes the crew for each item in the list, allowing you to process multiple items efficiently. Here’s an example of how to kickoff a crew for each item in a list:",
+                "code_examples": [
+                    "Codefrom crewai import Crew, Agent, Task\n\n# Create an agent with code execution enabled\ncoding_agent = Agent(\nrole=\"Python Data Analyst\",\ngoal=\"Analyze data and provide insights using Python\",\nbackstory=\"You are an experienced data analyst with strong Python skills.\",\nallow_code_execution=True\n)\n\n# Create a task that requires code execution\ndata_analysis_task = Task(\ndescription=\"Analyze the given dataset and calculate the average age of participants. Ages: {ages}\",\nagent=coding_agent,\nexpected_output=\"The average age calculated from the dataset\"\n)\n\n# Create a crew and add the task\nanalysis_crew = Crew(\nagents=[coding_agent],\ntasks=[data_analysis_task],\nverbose=True,\nmemory=False,\nrespect_context_window=True  # enable by default\n)\n\ndatasets = [\n{ \"ages\": [25, 30, 35, 40, 45] },\n{ \"ages\": [20, 25, 30, 35, 40] },\n{ \"ages\": [30, 35, 40, 45, 50] }\n]\n\n# Execute the crew\nresult = analysis_crew.kickoff_for_each(inputs=datasets)\nWas this page helpful?YesNoKickoff Crew AsynchronouslyReplay Tasks from Latest Crew KickoffwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageIntroductionKicking Off a Crew for Each Item"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/replay-tasks-from-latest-crew-kickoff",
+        "sections": [
+            {
+                "title": "Example Usage",
+                "content": "Replay Tasks from Latest Crew Kickoff - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesReplay Tasks from Latest Crew KickoffGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesConditional TasksLearn how to use conditional tasks in a crewAI kickoff​Introduction Conditional Tasks in crewAI allow for dynamic workflow adaptation based on the outcomes of previous tasks. This powerful feature enables crews to make decisions and execute tasks selectively, enhancing the flexibility and efficiency of your AI-driven processes."
+            },
+            {
+                "title": "from pydantic import BaseModel",
+                "content": "from crewai import Agent, Crew from crewai.tasks.conditional_task import ConditionalTask from crewai.tasks.task_output import TaskOutput from crewai.task import Task"
+            },
+            {
+                "title": "# If false, the task will be skipped, if true, then execute the task.",
+                "content": "def is_data_missing(output: TaskOutput) -> bool: return len(output.pydantic.events) < 10 # this will skip this task"
+            },
+            {
+                "title": "# Define the agents",
+                "content": "data_fetcher_agent = Agent( role=\"Data Fetcher\", goal=\"Fetch data online using Serper tool\", backstory=\"Backstory 1\", verbose=True, tools=[SerperDevTool()] ) data_processor_agent = Agent( role=\"Data Processor\", goal=\"Process fetched data\", backstory=\"Backstory 2\", verbose=True ) summary_generator_agent = Agent( role=\"Summary Generator\", goal=\"Generate summary from fetched data\", backstory=\"Backstory 3\", verbose=True ) class EventOutput(BaseModel): events: List[str] task1 = Task( description=\"Fetch data about events in San Francisco using Serper tool\", expected_output=\"List of 10 things to do in SF this week\", agent=data_fetcher_agent, output_pydantic=EventOutput, ) conditional_task = ConditionalTask( description=\"\"\" Check if data is missing. If we have less than 10 events,"
+            },
+            {
+                "title": "fetch more events using Serper tool so that",
+                "content": "we have a total of 10 events in SF this week.. \"\"\", expected_output=\"List of 10 Things to do in SF this week\", condition=is_data_missing, agent=data_processor_agent, ) task3 = Task( description=\"Generate summary of events in San Francisco from fetched data\", expected_output=\"A complete report on the customer and their customers and competitors, including their demographics, preferences, market positioning and audience engagement.\", agent=summary_generator_agent, )"
+            },
+            {
+                "title": "# Create a crew with the tasks",
+                "content": "crew = Crew( agents=[data_fetcher_agent, data_processor_agent, summary_generator_agent], tasks=[task1, conditional_task, task3], verbose=True, planning=True )"
+            },
+            {
+                "title": "# Run the crew",
+                "content": "result = crew.kickoff() print(\"results\", result)"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/how-to/agentops-observability",
+        "sections": [
+            {
+                "title": "Setup Instructions",
+                "content": "Agent Monitoring with AgentOps - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationHow to GuidesAgent Monitoring with AgentOpsGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationHow to GuidesAgent Monitoring with LangtraceHow to monitor cost, latency, and performance of CrewAI Agents using Langtrace, an external observability tool.​Langtrace Overview Langtrace is an open-source, external tool that helps you set up observability and evaluations for Large Language Models (LLMs), LLM frameworks, and Vector Databases. While not built directly into CrewAI, Langtrace can be used alongside CrewAI to gain deep visibility into the cost, latency, and performance of your CrewAI Agents. This integration allows you to log hyperparameters, monitor performance regressions, and establish a process for continuous improvement of your Agents. 1Sign up for LangtraceSign up by visiting https://langtrace.ai/signup.2Create a projectSet the project type to CrewAI and generate an API key.3Install Langtrace in your CrewAI projectUse the following command:pip install langtrace-python-sdk 4Import LangtraceImport and initialize Langtrace at the beginning of your script, before any CrewAI imports:from langtrace_python_sdk import langtrace langtrace.init(api_key='<LANGTRACE_API_KEY>')"
+            },
+            {
+                "title": "# Now import CrewAI modules",
+                "content": "from crewai import Agent, Task, Crew"
+            },
+            {
+                "title": "LLM Token and Cost Tracking",
+                "content": "Monitor the token usage and associated costs for each CrewAI agent interaction."
+            },
+            {
+                "title": "Trace Graph for Execution Steps",
+                "content": "Visualize the execution flow of your CrewAI tasks, including latency and logs. Useful for identifying bottlenecks in your agent workflows."
+            },
+            {
+                "title": "Dataset Curation with Manual Annotation",
+                "content": "Create datasets from your CrewAI task outputs for future training or evaluation."
+            },
+            {
+                "title": "Prompt Versioning and Management",
+                "content": "Keep track of different versions of prompts used in your CrewAI agents. Useful for A/B testing and optimizing agent performance."
+            },
+            {
+                "title": "Prompt Playground with Model Comparisons",
+                "content": "Test and compare different prompts and models for your CrewAI agents before deployment."
+            },
+            {
+                "title": "Testing and Evaluations",
+                "content": "Set up automated tests for your CrewAI agents and tasks."
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/browserbaseloadtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Browserbase Web Loader - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsBrowserbase Web LoaderGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsCode Docs RAG SearchThe CodeDocsSearchTool is a powerful RAG (Retrieval-Augmented Generation) tool designed for semantic searches within code documentation.​CodeDocsSearchTool Experimental: We are still working on improving tools, so there might be unexpected behavior or changes in the future. The CodeDocsSearchTool is a powerful RAG (Retrieval-Augmented Generation) tool designed for semantic searches within code documentation. It enables users to efficiently find specific information or topics within code documentation. By providing a docs_url during initialization, the tool narrows down the search to that particular documentation site. Alternatively, without a specific docs_url, it searches across a wide array of code documentation known or discovered throughout its execution, making it versatile for various documentation search needs."
+            },
+            {
+                "title": "Installation",
+                "content": "To start using the CodeDocsSearchTool, first, install the crewai_tools package via pip: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "Utilize the CodeDocsSearchTool as follows to conduct searches within code documentation:"
+            },
+            {
+                "title": "# if the URL is known or discovered during its execution:",
+                "content": "tool = CodeDocsSearchTool()"
+            },
+            {
+                "title": "# by providing its URL:",
+                "content": "tool = CodeDocsSearchTool(docs_url='https://docs.example.com/reference') Substitute ’https://docs.example.com/reference’ with your target documentation URL and ‘How to use search tool’ with the search query relevant to your needs."
+            },
+            {
+                "title": "Arguments",
+                "content": "The following parameters can be used to customize the CodeDocsSearchTool’s behavior: ArgumentTypeDescriptiondocs_urlstringOptional. Specifies the URL of the code documentation to be searched."
+            },
+            {
+                "title": "Custom model and embeddings",
+                "content": "By default, the tool uses OpenAI for both embeddings and summarization. To customize the model, you can use a config dictionary as follows:",
+                "code_examples": [
+                    "Codetool = CodeDocsSearchTool(\nconfig=dict(\nllm=dict(\nprovider=\"ollama\", # or google, openai, anthropic, llama2, ...\nconfig=dict(\nmodel=\"llama2\",\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n),\n),\nembedder=dict(\nprovider=\"google\", # or openai, ollama, ...\nconfig=dict(\nmodel=\"models/embedding-001\",\ntask_type=\"retrieval_document\",\n# title=\"Embeddings\",\n),\n),\n)\n)\nWas this page helpful?YesNoBrowserbase Web LoaderCode InterpreterwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageCodeDocsSearchToolDescriptionInstallationExampleArgumentsCustom model and embeddings"
+                ]
+            }
+        ]
+    },
+    null,
+    {
+        "url": "https://docs.crewai.com/tools/csvsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "CSV RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsCSV RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsDALL-E ToolThe DallETool is a powerful tool designed for generating images from textual descriptions.​DallETool This tool is used to give the Agent the ability to generate images using the DALL-E model. It is a transformer-based model that generates images from textual descriptions. This tool allows the Agent to generate images based on the text input provided by the user."
+            },
+            {
+                "title": "Install the crewai_tools package",
+                "content": "pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "Remember that when using this tool, the text must be generated by the Agent itself. The text must be a description of the image you want to generate."
+            },
+            {
+                "title": "Codefrom crewai_tools import DallETool",
+                "content": "Agent( ... tools=[DallETool()], ) If needed you can also tweak the parameters of the DALL-E model by passing them as arguments to the DallETool class. For example:"
+            },
+            {
+                "title": "Codefrom crewai_tools import DallETool",
+                "content": "dalle_tool = DallETool(model=\"dall-e-3\", size=\"1024x1024\", quality=\"standard\", n=1) Agent( ... tools=[dalle_tool] ) The parameters are based on the client.images.generate method from the OpenAI API. For more information on the parameters,"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/directorysearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Directory RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsDirectory RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsDirectory ReadThe DirectoryReadTool is a powerful utility designed to provide a comprehensive listing of directory contents.​DirectoryReadTool We are still working on improving tools, so there might be unexpected behavior or changes in the future. The DirectoryReadTool is a powerful utility designed to provide a comprehensive listing of directory contents. It can recursively navigate through the specified directory, offering users a detailed enumeration of all files, including those within subdirectories. This tool is crucial for tasks that require a thorough inventory of directory structures or for validating the organization of files within directories."
+            },
+            {
+                "title": "Installation",
+                "content": "To utilize the DirectoryReadTool in your project, install the crewai_tools package. If this package is not yet part of your environment, you can install it using pip with the command below: pip install 'crewai[tools]' This command installs the latest version of the crewai_tools package, granting access to the DirectoryReadTool among other utilities."
+            },
+            {
+                "title": "Example",
+                "content": "Employing the DirectoryReadTool is straightforward. The following code snippet demonstrates how to set it up and use the tool to list the contents of a specified directory:"
+            },
+            {
+                "title": "# it learns about during execution",
+                "content": "tool = DirectoryReadTool()"
+            },
+            {
+                "title": "# so the agent can only read the content of the specified directory",
+                "content": "tool = DirectoryReadTool(directory='/path/to/your/directory')"
+            },
+            {
+                "title": "Arguments",
+                "content": "The following parameters can be used to customize the DirectoryReadTool’s behavior:"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/docxsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "DOCX RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsDOCX RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsEXA Search Web LoaderThe EXASearchTool is designed to perform a semantic search for a specified query from a text’s content across the internet.​EXASearchTool The EXASearchTool is designed to perform a semantic search for a specified query from a text’s content across the internet. It utilizes the exa.ai API to fetch and display the most relevant search results based on the query provided by the user."
+            },
+            {
+                "title": "Installation",
+                "content": "To incorporate this tool into your project, follow the installation instructions below: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "The following example demonstrates how to initialize the tool and execute a search with a given query:"
+            },
+            {
+                "title": "# Initialize the tool for internet searching capabilities",
+                "content": "tool = EXASearchTool()"
+            },
+            {
+                "title": "Steps to Get Started",
+                "content": "To effectively use the EXASearchTool, follow these steps: 1Package InstallationConfirm that the crewai[tools] package is installed in your Python environment.2API Key AcquisitionAcquire a exa.ai API key by registering for a free account at exa.ai.3Environment ConfigurationStore your obtained API key in an environment variable named EXA_API_KEY to facilitate its use by the tool."
+            },
+            {
+                "title": "Conclusion",
+                "content": "By integrating the EXASearchTool into Python projects, users gain the ability to conduct real-time, relevant searches across the internet directly from their applications."
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/filereadtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "File Read - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsFile ReadGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsFile WriteThe FileWriterTool is designed to write content to files.​FileWriterTool The FileWriterTool is a component of the crewai_tools package, designed to simplify the process of writing content to files. It is particularly useful in scenarios such as generating reports, saving logs, creating configuration files, and more. This tool supports creating new directories if they don’t exist, making it easier to organize your output."
+            },
+            {
+                "title": "Installation",
+                "content": "Install the crewai_tools package to use the FileWriterTool in your projects: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "To get started with the FileWriterTool:"
+            },
+            {
+                "title": "# Initialize the tool",
+                "content": "file_writer_tool = FileWriterTool()"
+            },
+            {
+                "title": "# Write content to a file in a specified directory",
+                "content": "result = file_writer_tool._run('example.txt', 'This is a test content.', 'test_directory') print(result)"
+            },
+            {
+                "title": "Arguments",
+                "content": "filename: The name of the file you want to create or overwrite. content: The content to write into the file. directory (optional): The path to the directory where the file will be created. Defaults to the current directory (.). If the directory does not exist, it will be created."
+            },
+            {
+                "title": "Conclusion",
+                "content": "By integrating the FileWriterTool into your crews, the agents can execute the process of writing content to files and creating directories. This tool is essential for tasks that require saving output data, creating structured file systems, and more. By adhering to the setup and usage guidelines provided,"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/firecrawlcrawlwebsitetool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Firecrawl Crawl Website - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsFirecrawl Crawl WebsiteGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsFirecrawl Scrape WebsiteThe FirecrawlScrapeWebsiteTool is designed to scrape websites and convert them into clean markdown or structured data.​FirecrawlScrapeWebsiteTool Firecrawl is a platform for crawling and convert any website into clean markdown or structured data."
+            },
+            {
+                "title": "Installation",
+                "content": "Get an API key from firecrawl.dev and set it in environment variables (FIRECRAWL_API_KEY). Install the Firecrawl SDK along with crewai[tools] package: pip install firecrawl-py 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "Utilize the FirecrawlScrapeWebsiteTool as follows to allow your agent to load websites:"
+            },
+            {
+                "title": "Codefrom crewai_tools import FirecrawlScrapeWebsiteTool",
+                "content": "tool = FirecrawlScrapeWebsiteTool(url='firecrawl.dev')"
+            },
+            {
+                "title": "Arguments",
+                "content": "api_key: Optional. Specifies Firecrawl API key. Defaults is the FIRECRAWL_API_KEY environment variable. url: The URL to scrape. page_options: Optional. onlyMainContent: Optional. Only return the main content of the page excluding headers, navs, footers, etc. includeHtml: Optional. Include the raw HTML content of the page. Will output a html key in the response. extractor_options: Optional. Options for LLM-based extraction of structured information from the page content mode: The extraction mode to use, currently supports ‘llm-extraction’ extractionPrompt: Optional. A prompt describing what information to extract from the page extractionSchema: Optional. The schema for the data to be extracted timeout: Optional. Timeout in milliseconds for the request"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/firecrawlsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Firecrawl Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsFirecrawl SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsGithub SearchThe GithubSearchTool is designed to search websites and convert them into clean markdown or structured data.​GithubSearchTool We are still working on improving tools, so there might be unexpected behavior or changes in the future. The GithubSearchTool is a Retrieval-Augmented Generation (RAG) tool specifically designed for conducting semantic searches within GitHub repositories. Utilizing advanced semantic search capabilities, it sifts through code, pull requests, issues, and repositories, making it an essential tool for developers, researchers, or anyone in need of precise information from GitHub."
+            },
+            {
+                "title": "Installation",
+                "content": "To use the GithubSearchTool, first ensure the crewai_tools package is installed in your Python environment: pip install 'crewai[tools]' This command installs the necessary package to run the GithubSearchTool along with any other tools included in the crewai_tools package."
+            },
+            {
+                "title": "Example",
+                "content": "Here’s how you can use the GithubSearchTool to perform semantic searches within a GitHub repository:"
+            },
+            {
+                "title": "# Initialize the tool for semantic searches within a specific GitHub repository",
+                "content": "tool = GithubSearchTool( github_repo='https://github.com/example/repo', content_types=['code', 'issue'] # Options: code, repo, pr, issue )"
+            },
+            {
+                "title": "# Initialize the tool for semantic searches within a specific GitHub repository, so the agent can search any repository if it learns about during its execution",
+                "content": "tool = GithubSearchTool( content_types=['code', 'issue'] # Options: code, repo, pr, issue )"
+            },
+            {
+                "title": "Arguments",
+                "content": "github_repo : The URL of the GitHub repository where the search will be conducted. This is a mandatory field and specifies the target repository for your search. content_types : Specifies the types of content to include in your search. You must provide a list of content types from the following options: code for searching within the code, repo for searching within the repository’s general information, pr for searching within pull requests, and issue for searching within issues. This field is mandatory and allows tailoring the search to specific content types within the GitHub repository."
+            },
+            {
+                "title": "Custom model and embeddings",
+                "content": "By default, the tool uses OpenAI for both embeddings and summarization. To customize the model, you can use a config dictionary as follows:",
+                "code_examples": [
+                    "Codetool = GithubSearchTool(\nconfig=dict(\nllm=dict(\nprovider=\"ollama\", # or google, openai, anthropic, llama2, ...\nconfig=dict(\nmodel=\"llama2\",\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n),\n),\nembedder=dict(\nprovider=\"google\", # or openai, ollama, ...\nconfig=dict(\nmodel=\"models/embedding-001\",\ntask_type=\"retrieval_document\",\n# title=\"Embeddings\",\n),\n),\n)\n)\nWas this page helpful?YesNoFirecrawl SearchGoogle Serper SearchwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageGithubSearchToolDescriptionInstallationExampleArgumentsCustom model and embeddings"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/serperdevtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Google Serper Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsGoogle Serper SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsJSON RAG SearchThe JSONSearchTool is designed to search JSON files and return the most relevant results.​JSONSearchTool The JSONSearchTool is currently in an experimental phase. This means the tool is under active development, and users might encounter unexpected behavior or changes. We highly encourage feedback on any issues or suggestions for improvements. The JSONSearchTool is designed to facilitate efficient and precise searches within JSON file contents. It utilizes a RAG (Retrieve and Generate) search mechanism, allowing users to specify a JSON path for targeted searches within a particular JSON file. This capability significantly improves the accuracy and relevance of search results."
+            },
+            {
+                "title": "Installation",
+                "content": "To install the JSONSearchTool, use the following pip command: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Usage Examples",
+                "content": "Here are updated examples on how to utilize the JSONSearchTool effectively for searching within JSON files. These examples take into account the current implementation and usage patterns identified in the codebase.",
+                "code_examples": [
+                    "Codefrom crewai.json_tools import JSONSearchTool  # Updated import path\n\n# General JSON content search\n# This approach is suitable when the JSON path is either known beforehand or can be dynamically identified.\ntool = JSONSearchTool()\n\n# Restricting search to a specific JSON file\n# Use this initialization method when you want to limit the search scope to a specific JSON file.\ntool = JSONSearchTool(json_path='./path/to/your/file.json')\n\n​Arguments\n\njson_path (str, optional): Specifies the path to the JSON file to be searched. This argument is not required if the tool is initialized for a general search. When provided, it confines the search to the specified JSON file.\n\n​Configuration Options\nThe JSONSearchTool supports extensive customization through a configuration dictionary. This allows users to select different models for embeddings and summarization based on their requirements.\nCodetool = JSONSearchTool(\nconfig={\n\"llm\": {\n\"provider\": \"ollama\",  # Other options include google, openai, anthropic, llama2, etc.\n\"config\": {\n\"model\": \"llama2\",\n# Additional optional configurations can be specified here.\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n},\n},\n\"embedder\": {\n\"provider\": \"google\", # or openai, ollama, ...\n\"config\": {\n\"model\": \"models/embedding-001\",\n\"task_type\": \"retrieval_document\",\n# Further customization options can be added here.\n},\n},\n}\n)\nWas this page helpful?YesNoGoogle Serper SearchMDX RAG SearchwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageJSONSearchToolDescriptionInstallationUsage ExamplesArgumentsConfiguration Options"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/mdxsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "MDX RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsMDX RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsMySQL RAG SearchThe MySQLSearchTool is designed to search MySQL databases and return the most relevant results.​MySQLSearchTool This tool is designed to facilitate semantic searches within MySQL database tables. Leveraging the RAG (Retrieve and Generate) technology, the MySQLSearchTool provides users with an efficient means of querying database table content, specifically tailored for MySQL databases. It simplifies the process of finding relevant data through semantic search queries, making it an invaluable resource for users needing to perform advanced queries on extensive datasets within a MySQL database."
+            },
+            {
+                "title": "Installation",
+                "content": "To install the crewai_tools package and utilize the MySQLSearchTool, execute the following command in your terminal: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "Below is an example showcasing how to use the MySQLSearchTool to conduct a semantic search on a table within a MySQL database:"
+            },
+            {
+                "title": "# Initialize the tool with the database URI and the target table name",
+                "content": "tool = MySQLSearchTool( db_uri='mysql://user:password@localhost:3306/mydatabase', table_name='employees' )"
+            },
+            {
+                "title": "Arguments",
+                "content": "The MySQLSearchTool requires the following arguments for its operation: db_uri: A string representing the URI of the MySQL database to be queried. This argument is mandatory and must include the necessary authentication details and the location of the database. table_name: A string specifying the name of the table within the database on which the semantic search will be performed. This argument is mandatory."
+            },
+            {
+                "title": "Custom model and embeddings",
+                "content": "By default, the tool uses OpenAI for both embeddings and summarization. To customize the model, you can use a config dictionary as follows:",
+                "code_examples": [
+                    "Codetool = MySQLSearchTool(\nconfig=dict(\nllm=dict(\nprovider=\"ollama\", # or google, openai, anthropic, llama2, ...\nconfig=dict(\nmodel=\"llama2\",\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n),\n),\nembedder=dict(\nprovider=\"google\",\nconfig=dict(\nmodel=\"models/embedding-001\",\ntask_type=\"retrieval_document\",\n# title=\"Embeddings\",\n),\n),\n)\n)\nWas this page helpful?YesNoMDX RAG SearchNL2SQL ToolwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageMySQLSearchToolDescriptionInstallationExampleArgumentsCustom model and embeddings"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/nl2sqltool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "NL2SQL Tool - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsNL2SQL ToolGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsPDF RAG SearchThe PDFSearchTool is designed to search PDF files and return the most relevant results.​PDFSearchTool We are still working on improving tools, so there might be unexpected behavior or changes in the future. The PDFSearchTool is a RAG tool designed for semantic searches within PDF content. It allows for inputting a search query and a PDF document, leveraging advanced search techniques to find relevant content efficiently. This capability makes it especially useful for extracting specific information from large PDF files quickly."
+            },
+            {
+                "title": "Installation",
+                "content": "To get started with the PDFSearchTool, first, ensure the crewai_tools package is installed with the following command: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "Here’s how to use the PDFSearchTool to search within a PDF document:"
+            },
+            {
+                "title": "# Initialize the tool allowing for any PDF content search if the path is provided during execution",
+                "content": "tool = PDFSearchTool()"
+            },
+            {
+                "title": "# Initialize the tool with a specific PDF path for exclusive search within that document",
+                "content": "tool = PDFSearchTool(pdf='path/to/your/document.pdf')"
+            },
+            {
+                "title": "Arguments",
+                "content": "pdf: Optional The PDF path for the search. Can be provided at initialization or within the run method’s arguments. If provided at initialization, the tool confines its search to the specified document."
+            },
+            {
+                "title": "Custom model and embeddings",
+                "content": "By default, the tool uses OpenAI for both embeddings and summarization. To customize the model, you can use a config dictionary as follows:",
+                "code_examples": [
+                    "Codetool = PDFSearchTool(\nconfig=dict(\nllm=dict(\nprovider=\"ollama\", # or google, openai, anthropic, llama2, ...\nconfig=dict(\nmodel=\"llama2\",\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n),\n),\nembedder=dict(\nprovider=\"google\", # or openai, ollama, ...\nconfig=dict(\nmodel=\"models/embedding-001\",\ntask_type=\"retrieval_document\",\n# title=\"Embeddings\",\n),\n),\n)\n)\nWas this page helpful?YesNoNL2SQL ToolPG RAG SearchwebsitexgithublinkedinyoutubePowered by MintlifyOn this pagePDFSearchToolDescriptionInstallationExampleArgumentsCustom model and embeddings"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/pgsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "PG RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsPG RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsScrape WebsiteThe ScrapeWebsiteTool is designed to extract and read the content of a specified website.​ScrapeWebsiteTool We are still working on improving tools, so there might be unexpected behavior or changes in the future. A tool designed to extract and read the content of a specified website. It is capable of handling various types of web pages by making HTTP requests and parsing the received HTML content. This tool can be particularly useful for web scraping tasks, data collection, or extracting specific information from websites."
+            },
+            {
+                "title": "Install the crewai_tools package",
+                "content": "pip install 'crewai[tools]'"
+            },
+            {
+                "title": "# To enable scrapping any website it finds during it's execution",
+                "content": "tool = ScrapeWebsiteTool()"
+            },
+            {
+                "title": "# so the agent can only scrap the content of the specified website",
+                "content": "tool = ScrapeWebsiteTool(website_url='https://www.example.com')"
+            },
+            {
+                "title": "# Extract the text from the site",
+                "content": "text = tool.run() print(text)"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/seleniumscrapingtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Selenium Scraper - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsSelenium ScraperGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsSpider ScraperThe SpiderTool is designed to extract and read the content of a specified website using Spider.​SpiderTool"
+            },
+            {
+                "title": "Spider is the fastest",
+                "content": "open source scraper and crawler that returns LLM-ready data. It converts any website into pure HTML, markdown, metadata or text while enabling you to crawl with custom actions using AI."
+            },
+            {
+                "title": "To use the SpiderTool you need to download the Spider SDK",
+                "content": "and the crewai[tools] SDK too: pip install spider-client 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "This example shows you how you can use the SpiderTool to enable your agent to scrape and crawl websites. The data returned from the Spider API is already LLM-ready, so no need to do any cleaning there."
+            },
+            {
+                "title": "Codefrom crewai_tools import SpiderTool",
+                "content": "def main(): spider_tool = SpiderTool() searcher = Agent( role=\"Web Research Expert\", goal=\"Find related information from specific URL's\", backstory=\"An expert web researcher that uses the web extremely well\", tools=[spider_tool], verbose=True, ) return_metadata = Task( description=\"Scrape https://spider.cloud with a limit of 1 and enable metadata\", expected_output=\"Metadata and 10 word summary of spider.cloud\", agent=searcher ) crew = Crew( agents=[searcher], tasks=[ return_metadata, ], verbose=2 ) crew.kickoff() if __name__ == \"__main__\": main()"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/txtsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "TXT RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsTXT RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsVision ToolThe VisionTool is designed to extract text from images.​VisionTool This tool is used to extract text from images. When passed to the agent it will extract the text from the image and then use it to generate a response, report or any other output. The URL or the PATH of the image should be passed to the Agent."
+            },
+            {
+                "title": "Install the crewai_tools package",
+                "content": "pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Usage",
+                "content": "In order to use the VisionTool, the OpenAI API key should be set in the environment variable OPENAI_API_KEY."
+            },
+            {
+                "title": "Codefrom crewai_tools import VisionTool",
+                "content": "vision_tool = VisionTool() @agent def researcher(self) -> Agent: ''' This agent uses the VisionTool to extract text from images. ''' return Agent( config=self.agents_config[\"researcher\"], allow_delegation=False, tools=[vision_tool] )"
+            },
+            {
+                "title": "Arguments",
+                "content": "The VisionTool requires the following arguments:"
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/websitesearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "Website RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsWebsite RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsXML RAG SearchThe XMLSearchTool is designed to perform a RAG (Retrieval-Augmented Generation) search within the content of a XML file.​XMLSearchTool We are still working on improving tools, so there might be unexpected behavior or changes in the future. The XMLSearchTool is a cutting-edge RAG tool engineered for conducting semantic searches within XML files. Ideal for users needing to parse and extract information from XML content efficiently, this tool supports inputting a search query and an optional XML file path. By specifying an XML path, users can target their search more precisely to the content of that file, thereby obtaining more relevant search outcomes."
+            },
+            {
+                "title": "Installation",
+                "content": "To start using the XMLSearchTool, you must first install the crewai_tools package. This can be easily done with the following command: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "Here are two examples demonstrating how to use the XMLSearchTool. The first example shows searching within a specific XML file, while the second example illustrates initiating a search without predefining an XML path, providing flexibility in search scope."
+            },
+            {
+                "title": "#as it learns about their paths during execution",
+                "content": "tool = XMLSearchTool()"
+            },
+            {
+                "title": "#for exclusive search within that document",
+                "content": "tool = XMLSearchTool(xml='path/to/your/xmlfile.xml')"
+            },
+            {
+                "title": "Arguments",
+                "content": "xml: This is the path to the XML file you wish to search. It is an optional parameter during the tool’s initialization but must be provided either at initialization or as part of the run method’s arguments to execute a search."
+            },
+            {
+                "title": "Custom model and embeddings",
+                "content": "By default, the tool uses OpenAI for both embeddings and summarization. To customize the model, you can use a config dictionary as follows:",
+                "code_examples": [
+                    "Code  tool = XMLSearchTool(\nconfig=dict(\nllm=dict(\nprovider=\"ollama\", # or google, openai, anthropic, llama2, ...\nconfig=dict(\nmodel=\"llama2\",\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n),\n),\nembedder=dict(\nprovider=\"google\", # or openai, ollama, ...\nconfig=dict(\nmodel=\"models/embedding-001\",\ntask_type=\"retrieval_document\",\n# title=\"Embeddings\",\n),\n),\n)\n)\nWas this page helpful?YesNoWebsite RAG SearchYouTube Channel RAG SearchwebsitexgithublinkedinyoutubePowered by MintlifyOn this pageXMLSearchToolDescriptionInstallationExampleArgumentsCustom model and embeddings"
+                ]
+            }
+        ]
+    },
+    {
+        "url": "https://docs.crewai.com/tools/youtubechannelsearchtool",
+        "sections": [
+            {
+                "title": "Description",
+                "content": "YouTube Channel RAG Search - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationToolsYouTube Channel RAG SearchGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationToolsYouTube Video RAG SearchThe YoutubeVideoSearchTool is designed to perform a RAG (Retrieval-Augmented Generation) search within the content of a Youtube video.​YoutubeVideoSearchTool We are still working on improving tools, so there might be unexpected behavior or changes in the future. This tool is part of the crewai_tools package and is designed to perform semantic searches within Youtube video content, utilizing Retrieval-Augmented Generation (RAG) techniques. It is one of several “Search” tools in the package that leverage RAG for different sources. The YoutubeVideoSearchTool allows for flexibility in searches; users can search across any Youtube video content without specifying a video URL, or they can target their search to a specific Youtube video by providing its URL."
+            },
+            {
+                "title": "Installation",
+                "content": "To utilize the YoutubeVideoSearchTool, you must first install the crewai_tools package. This package contains the YoutubeVideoSearchTool among other utilities designed to enhance your data analysis and processing tasks. Install the package by executing the following command in your terminal: pip install 'crewai[tools]'"
+            },
+            {
+                "title": "Example",
+                "content": "To integrate the YoutubeVideoSearchTool into your Python projects, follow the example below. This demonstrates how to use the tool both for general Youtube content searches and for targeted searches within a specific video’s content."
+            },
+            {
+                "title": "# it learns about its url during its operation",
+                "content": "tool = YoutubeVideoSearchTool()"
+            },
+            {
+                "title": "# Targeted search within a specific Youtube video's content",
+                "content": "tool = YoutubeVideoSearchTool( youtube_video_url='https://youtube.com/watch?v=example' )"
+            },
+            {
+                "title": "Arguments",
+                "content": "The YoutubeVideoSearchTool accepts the following initialization arguments: youtube_video_url: An optional argument at initialization but required if targeting a specific Youtube video. It specifies the Youtube video URL path you want to search within."
+            },
+            {
+                "title": "Custom model and embeddings",
+                "content": "By default, the tool uses OpenAI for both embeddings and summarization. To customize the model, you can use a config dictionary as follows:",
+                "code_examples": [
+                    "Code  tool = YoutubeVideoSearchTool(\nconfig=dict(\nllm=dict(\nprovider=\"ollama\", # or google, openai, anthropic, llama2, ...\nconfig=dict(\nmodel=\"llama2\",\n# temperature=0.5,\n# top_p=1,\n# stream=true,\n),\n),\nembedder=dict(\nprovider=\"google\", # or openai, ollama, ...\nconfig=dict(\nmodel=\"models/embedding-001\",\ntask_type=\"retrieval_document\",\n# title=\"Embeddings\",\n),\n),\n)\n)\nWas this page helpful?YesNoYouTube Channel RAG SearchTelemetrywebsitexgithublinkedinyoutubePowered by MintlifyOn this pageYoutubeVideoSearchToolDescriptionInstallationExampleArgumentsCustom model and embeddings"
+                ]
+            }
+        ]
+    },
+    null,
+    {
+        "url": "https://docs.crewai.com/installation",
+        "sections": [
+            {
+                "title": "Terminalcrewai update",
+                "content": "Installation - CrewAICrewAI home pageSearch CrewAI docscrewAIInc/crewAIcrewAIInc/crewAISearchNavigationGet StartedInstallationGet StartedExamplesCrewAI home pageCommunityChangelogGet StartedIntroductionInstallationGet StartedInstallationThis guide will walk you through the installation process for CrewAI and its dependencies. CrewAI is a flexible and powerful AI framework that enables you to create and manage AI agents, tools, and tasks efficiently. Let’s get started! 🚀 Make sure you have Python >=3.10 <=3.13 installed on your system before you proceed. 1Install CrewAIInstall the main CrewAI package with the following command:You can also install the main CrewAI package and the tools package that include a series of helpful tools for your agents:Alternatively, you can also use:2Upgrade CrewAITo upgrade CrewAI and CrewAI Tools to the latest version, run the following command If you’re using an older version of CrewAI, you may receive a warning about using Poetry for dependency management. In this case, you’ll need to run the command below to update your project. This command will migrate your project to use UV and update the necessary files. After running the command above, you should see the following output: You’re all set! You can now proceed to the next step! 🎉 3Verify the installationTo verify that crewai and crewai-tools are installed correctly, run the following commandYou should see the version number of crewai and crewai-tools.If you see the version number, then the installation was successful! 🎉"
+            },
+            {
+                "title": "Create a new CrewAI project",
+                "content": "The next step is to create a new CrewAI project. We recommend using the YAML Template scaffolding to get started as it provides a structured approach to defining agents and tasks. 1Create a new CrewAI project using the YAML Template ConfigurationTo create a new CrewAI project, run the following CLI (Command Line Interface) command:This command creates a new project folder with the following structure:File/DirectoryDescriptionmy_project/Root directory of the project├── .gitignoreSpecifies files and directories to ignore in Git├── pyproject.tomlProject configuration and dependencies├── README.mdProject documentation├── .envEnvironment variables└── src/Source code directory    └── my_project/Main application package        ├── __init__.pyMarks the directory as a Python package        ├── main.pyMain application script        ├── crew.pyCrew-related functionalities        ├── tools/Custom tools directory        │  ├── custom_tool.pyCustom tool implementation        │  └── __init__.pyMarks tools directory as a package        └── config/Configuration files directory            ├── agents.yamlAgent configurations            └── tasks.yamlTask configurationsYou can now start developing your crew by editing the files in the src/my_project folder. The main.py file is the entry point of the project, the crew.py file is where you define your crew, the agents.yaml file is where you define your agents, and the tasks.yaml file is where you define your tasks.2Customize your projectTo customize your project, you can: Modify src/my_project/config/agents.yaml to define your agents. Modify src/my_project/config/tasks.yaml to define your tasks. Modify src/my_project/crew.py to add your own logic, tools, and specific arguments. Modify src/my_project/main.py to add custom inputs for your agents and tasks. Add your environment variables into the .env file."
+            },
+            {
+                "title": "Next steps",
+                "content": "Now that you have installed crewai and crewai-tools, you’re ready to spin up your first crew! 👨‍💻 Build your first agent with CrewAI by following the Quickstart guide. 💬 Join the Community to get help and share your feedback."
+            }
+        ]
+    }
+]

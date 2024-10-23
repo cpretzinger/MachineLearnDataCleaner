@@ -1,0 +1,50 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+eggs-info/
+lib/
+lib64/
+parts/
+var/
+venv/
+*.egg-info/
+
+# Virtual environment
+venv/
+ENV/
+env/
+.env
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Pytest
+.cache
+*.cover
+*.log
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Others
+*.DS_Store
+*.pkl
+*.parquet
+*.json
+*.txt
+*.csv
+
+# Ignore any other sensitive files or logs
+*.log
+*.sqlite3
+*.db
